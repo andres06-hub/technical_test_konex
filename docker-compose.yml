@@ -2,6 +2,7 @@ version: "3"
 
 volumes:
   psqlKonex:
+  redisKonex:
 services:
   db_psql:
     container_name: db_psql
@@ -15,3 +16,15 @@ services:
       - POSTGRES_USER=user1
       - POSTGRES_PASSWORD=konex
       - POSTGRES_DB=medicine
+
+  db_redis:
+    container_name: db_redis
+    image: redis:7.0.8-alpine
+    # environment:
+    #   - 
+    ports:
+      - "6379:6379"
+    volumes:
+      - redisKonex:/var/lib/redis
+    command: >
+      --requirepass konex
