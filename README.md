@@ -5,5 +5,5 @@ This is technical test for Konex
 - Install Docker
 - In the main path of the project, execute: 
 ```bash
-docker-compose up --build
+$ docker-compose up --build
 ```
