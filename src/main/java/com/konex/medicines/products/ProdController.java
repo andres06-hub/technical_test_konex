@@ -65,9 +65,17 @@ public class ProdController {
   //TODO: CREAR FILTROS
   @GetMapping("medicines/filter")
   public ResponseEntity<ResponseDto> getMedicinesFilter(
-    @RequestParam(value = "filterBy", defaultValue = "") List<String> filterBy,
+    @RequestParam(value = "filterBy", defaultValue = "") String filterBy,
     @RequestParam(value= "value", defaultValue = "") String value
   ) throws JsonMappingException, JsonProcessingException {
+
+    //Hacer filtros con swicht
+    switch (filterBy) {
+      case "name":
+        return ResponseEntity.status(HttpStatus.OK).body(new ResponseDto("Medicines", this._prodService.findByName(value)));
+      case "factoryLaboratory":
+        return ResponseEntity.status(HttpStatus.OK).body(new ResponseDto("Medicines", this._prodService.findByFactory(value)));
+    }
     System.out.println(filterBy+" - "+value);
     return ResponseEntity.status(HttpStatus.OK)
           .body(new ResponseDto(""));

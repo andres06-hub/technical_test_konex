@@ -77,4 +77,12 @@ public class ProdService implements ProdInterface {
     return this._prodRept.findByPublicId(publicId);
   }
 
+  public List<ProdEntity> findByName(String name) {
+    return (List<ProdEntity>) this._prodRept.findByName(name);
+  }
+
+  public List<ProdEntity> findByFactory(String factoryLaboratory) {
+    return (List<ProdEntity>) this._prodRept.findByFactory(factoryLaboratory);
+  }
+
 }
