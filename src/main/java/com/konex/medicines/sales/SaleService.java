@@ -18,6 +18,11 @@ public class SaleService {
   SaleRepository _saleRpt;
 
   @Transactional
+  public List<SaleEntity> getSales() {
+    return (List<SaleEntity>) this._saleRpt.findAll();
+  }
+
+  @Transactional
   public SaleEntity save(SaleEntity data) {
     return this._saleRpt.save(data);
   }
@@ -30,12 +35,6 @@ public class SaleService {
   @Transactional(readOnly = true)
   public SaleEntity findById(Long id) {
     return this._saleRpt.findById(id).orElse(null);
-  }
-
-  public String generateDateTime() {
-    LocalDateTime now = LocalDateTime.now();  
-    DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");  
-    return now.format(format);  
   }
   
 }
