@@ -24,7 +24,7 @@ public class SaleEntity implements Serializable {
 
     @Column(name = "sale_datetime")
     @NotNull
-    String saleDateTime;
+    Long saleDateTime;
 
     @Column(name = "quantity")
     @NotNull
