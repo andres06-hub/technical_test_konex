@@ -38,13 +38,13 @@ public class ProdController {
   @Resource
   ProdService _prodService;
 
-  @Resource 
+  @Resource
   RedisService _redisSrv;
 
   @GetMapping("medicines")
   public ResponseEntity<ResponseDto> getAll() throws JsonMappingException, JsonProcessingException {
     List<Object> data = this._redisSrv.getData(_const.KEY);
-    System.out.println("--> "+data+"\n");
+    System.out.println("--> " + data + "\n");
     if (data != null && !data.isEmpty()) {
       // Transform data
       List<ProdEntity> medicines = this._redisSrv.covertJsonToObjectClass(data);
@@ -52,61 +52,66 @@ public class ProdController {
     }
     List<ProdEntity> results = this._prodService.getProducts();
     System.out.println(!results.isEmpty() ? results : "No products!");
-    //Save Products: Medicines
+    // Save Products: Medicines
     try {
       this._redisSrv.saveData(_const.KEY, results);
     } catch (Exception e) {
       log.error("ERROR: ", e);
     }
     return ResponseEntity.status(HttpStatus.OK)
-            .body(new ResponseDto("MEDICINES:", results));
+        .body(new ResponseDto("MEDICINES:", results));
   }
 
-  //TODO: CREAR FILTROS
+  // TODO: CREAR FILTROS
   @GetMapping("medicines/filter")
   public ResponseEntity<ResponseDto> getMedicinesFilter(
-    @RequestParam(value = "filterBy", defaultValue = "") String filterBy,
-    @RequestParam(value= "value", defaultValue = "") String value
-  ) throws JsonMappingException, JsonProcessingException {
+      @RequestParam(value = "filterBy", defaultValue = "") String filterBy,
+      @RequestParam(value = "value", defaultValue = "") String value)
+      throws JsonMappingException, JsonProcessingException {
 
-    //Hacer filtros con swicht
+    // Hacer filtros con swicht
     switch (filterBy) {
       case "name":
-        return ResponseEntity.status(HttpStatus.OK).body(new ResponseDto("Medicines", this._prodService.findByName(value)));
+        return ResponseEntity.status(HttpStatus.OK)
+            .body(new ResponseDto("Medicines", this._prodService.findByName(value)));
       case "factoryLaboratory":
-        return ResponseEntity.status(HttpStatus.OK).body(new ResponseDto("Medicines", this._prodService.findByFactory(value)));
+        return ResponseEntity.status(HttpStatus.OK)
+            .body(new ResponseDto("Medicines", this._prodService.findByFactory(value)));
     }
-    System.out.println(filterBy+" - "+value);
+    System.out.println(filterBy + " - " + value);
     return ResponseEntity.status(HttpStatus.OK)
-          .body(new ResponseDto(""));
+        .body(new ResponseDto(""));
   }
 
   @PutMapping("medicine/{id}")
   public ResponseEntity<ResponseDto> putProduct(@PathVariable Long id, @RequestBody @Valid ProdEntity data) {
-    ReturnTypeDto result = this._prodService.updateProd(id,data);
-    if(result.getExists() == false) return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ResponseDto("Not found drug"));
+    ReturnTypeDto result = this._prodService.updateProd(id, data);
+    if (result.getExists() == false)
+      return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ResponseDto("Not found drug"));
     return ResponseEntity.status(HttpStatus.OK)
-              .body(new ResponseDto("Updated Medicine", result.data));
+        .body(new ResponseDto("Updated Medicine", result.data));
   }
 
   @DeleteMapping("medicine/{id}")
   public ResponseEntity<ResponseDto> delProduct(@PathVariable("id") String id) {
     Long _id = (long) Integer.parseInt(id);
     ReturnTypeDto result = this._prodService.deleteProd(_id);
-    if (result.getExists() == false) return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ResponseDto("Drug does not exist!", null));
+    if (result.getExists() == false)
+      return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ResponseDto("Drug does not exist!", null));
     return ResponseEntity.status(HttpStatus.OK)
-            .body(new ResponseDto("Drug Deleted", null));
+        .body(new ResponseDto("Drug Deleted", null));
   }
 
-  //TODO:transformar el name a minuscula
+  // TODO:transformar el name a minuscula
   @PostMapping("medicine")
   public ResponseEntity<ResponseDto> createProd(@RequestBody @Valid ProdEntity data) {
     ReturnTypeDto result = this._prodService.saveProd(data);
     System.out.println(result);
-    if (result.getExists() == true) return ResponseEntity.status(HttpStatus.OK).body(new ResponseDto("Drug Exists", null));
+    if (result.getExists() == true)
+      return ResponseEntity.status(HttpStatus.OK).body(new ResponseDto("Drug Exists", null));
     this._redisSrv.deleteValue(_const.KEY);
     return ResponseEntity.status(HttpStatus.CREATED)
-            .body(new ResponseDto("Drug created!", result.getData()));
+        .body(new ResponseDto("Drug created!", result.getData()));
   }
 
   @PostMapping("medicine/create-products")

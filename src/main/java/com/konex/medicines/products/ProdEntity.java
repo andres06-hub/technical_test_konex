@@ -57,6 +57,6 @@ public class ProdEntity implements Serializable {
   @NotNull(message = "value cannot be Null")
   Double unitValue;
 
-  @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
-  private List<SaleEntity> sales;
+  // @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
+  // private List<SaleEntity> sales;
 }

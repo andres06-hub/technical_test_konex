@@ -39,7 +39,7 @@ public class SaleEntity implements Serializable {
     @NotNull
     Double totalValue;
 
-    @ManyToOne
-    @JoinColumn(name = "product_id")
-    private ProdEntity product;
+    // @ManyToOne
+    // @JoinColumn(name = "product_id")
+    // private ProdEntity product;
 }

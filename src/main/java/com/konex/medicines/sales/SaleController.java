@@ -64,7 +64,7 @@ public class SaleController {
     data.setName(medicine.getName());
     data.setSaleDateTime(data.getSaleDateTime());
     data.setUnitPrice(medicine.getUnitValue());
-    data.setProduct(medicine);
+    // data.setProduct(medicine);
     SaleEntity sale;
     // Save Sale
     try {
