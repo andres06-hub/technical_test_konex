@@ -1,7 +1,5 @@
 package com.konex.medicines.sales;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -36,5 +34,4 @@ public class SaleService {
   public SaleEntity findById(Long id) {
     return this._saleRpt.findById(id).orElse(null);
   }
-  
 }
