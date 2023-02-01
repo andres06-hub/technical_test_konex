@@ -75,19 +75,19 @@ public class SaleController {
   //TODO: Crear Filtros
   @GetMapping("sales/")
   public ResponseEntity<?> getSales(
-    @RequestParam(value = "filterStartDate", defaultValue = "") Long filterStartDate,
-    @RequestParam(value = "filterEndDate", defaultValue = "") Long filterEndDate
+    @RequestParam(value = "filterStartDate", defaultValue = "0") Long filterStartDate,
+    @RequestParam(value = "filterEndDate", defaultValue = "0") Long filterEndDate
   ) {
-    if (filterStartDate != null && filterEndDate != null) {
+    if (filterStartDate != 0 && filterEndDate != 0) {
       //Obtener ventas por fecha
       List<SaleEntity> sales = this._saleSrv.findBewteenDates(filterStartDate, filterEndDate);
       System.out.println("SALES FILTERS: "+sales);
+      return ResponseEntity.status(HttpStatus.OK).body(sales);
     }
 
-    List<SaleEntity> sales = this._saleSrv.getSales();
     // Obtener las ventas
-    System.out.println(sales);
-    return ResponseEntity.status(HttpStatus.OK).body("");
+    List<SaleEntity> sales = this._saleSrv.getSales();
+    return ResponseEntity.status(HttpStatus.OK).body(sales);
   }
 
   //API para calcular el valor total de una compra
