@@ -4,7 +4,7 @@ volumes:
   psqlKonex:
   redisKonex:
 services:
-  db_psql:
+  psql_db:
     container_name: db_psql
     image: postgres
     ports:
@@ -17,7 +17,7 @@ services:
       - POSTGRES_PASSWORD=konex
       - POSTGRES_DB=medicine
 
-  db_redis:
+  redis_db:
     container_name: db_redis
     image: redis:7.0.8-alpine
     # environment:
