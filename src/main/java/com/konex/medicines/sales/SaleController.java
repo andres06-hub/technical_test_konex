@@ -62,6 +62,7 @@ public class SaleController {
     // TODO: Cambiar a timeStand
     double finalValue = Math.round(totalValue * 100.0) / 100.0;
     data.setTotalValue(finalValue);
+    data.setName(medicine.getName());
     data.setSaleDateTime(data.getSaleDateTime());
     data.setUnitPrice(medicine.getUnitValue());
     SaleEntity sale;
