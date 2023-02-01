@@ -12,4 +12,5 @@ public interface ProdInterface {
   public ReturnTypeDto saveProd(ProdEntity data);
   public ReturnTypeDto updateProd(Long id, ProdEntity data);
   public ReturnTypeDto deleteProd(Long id);
+  public void saveProducts(List<ProdEntity> data);
 }

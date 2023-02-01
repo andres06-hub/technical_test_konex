@@ -42,6 +42,12 @@ public class ProdService implements ProdInterface {
   }
 
   @Transactional
+  public void saveProducts(List<ProdEntity> data) {
+    this._prodRept.saveAll(data);
+  }
+
+
+  @Transactional
   @Override
   public ReturnTypeDto updateProd(Long id, ProdEntity data) {
     ProdEntity medicine = this.findById(id);

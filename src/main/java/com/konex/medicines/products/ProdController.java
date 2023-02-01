@@ -68,36 +68,6 @@ public class ProdController {
     @RequestParam(value = "filterBy", defaultValue = "") List<String> filterBy,
     @RequestParam(value= "value", defaultValue = "") String value
   ) throws JsonMappingException, JsonProcessingException {
-
-    String[] fields = new String[] {
-      "id",
-      "name",
-      "factoryLaboratory",
-      "dateManufacture",
-      "expirationDate",
-      "quantityStock",
-      "unitValue"
-    };
-    
-    
-    boolean isValid = Arrays.stream(fields).anyMatch(filterBy.get(0)::equals) ? true : false;
-
-    if (!isValid) return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ResponseDto("The filter does not exist!"));
-    List<Object> medicinesJson = this._redisSrv.getData(_const.KEY);
-    List<ProdEntity> medicines =  this._redisSrv.covertJsonToObjectClass(medicinesJson);
-
-    // for (ProdEntity medi : medicines) {
-    //   Predicate<ProdEntity> startB = s -> s.medi.startsWith(value);
-    //   medicines.stream().filter(startB).forEach(s -> System.out.println(s));
-    // }
-
-    // for (Object medi : medicinesJson) {
-      // System.out.println(medi.getFactoryLaboratory() instanceof String);
-      // System.out.println(medi);
-      // if (medi) {
-      //   System.out.println("PASA");
-      // }
-    // }
     System.out.println(filterBy+" - "+value);
     return ResponseEntity.status(HttpStatus.OK)
           .body(new ResponseDto(""));
@@ -129,5 +99,16 @@ public class ProdController {
     this._redisSrv.deleteValue(_const.KEY);
     return ResponseEntity.status(HttpStatus.CREATED)
             .body(new ResponseDto("Drug created!", result.getData()));
+  }
+
+  @PostMapping("medicine/create-products")
+  public ResponseEntity<ResponseDto> createProducts(@RequestBody @Valid List<ProdEntity> data) {
+    System.out.println(data);
+    try {
+      this._prodService.saveProducts(data);
+    } catch (Exception e) {
+      log.error("ERROR: " + e);
+    }
+    return ResponseEntity.status(HttpStatus.OK).body(new ResponseDto("OK"));
   }
 }
