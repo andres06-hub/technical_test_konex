@@ -1,10 +1,14 @@
 package com.konex.medicines.sales;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -50,11 +54,10 @@ public class SaleController {
       if (result.getStatus()) log.info("Updated Medicine: " + result.getData());
       // Round value
       double totalValue = data.getQuantity()*data.getUnitPrice();
+      //TODO: Cambiar a timeStand
       double finalValue = Math.round( totalValue * 100.0 ) / 100.0;
       data.setTotalValue(finalValue);
-      //Generate DateTime 
-      String dataTime = this._saleSrv.generateDateTime();
-      data.setSaleDateTime(dataTime);
+      data.setSaleDateTime(data.getSaleDateTime());
       SaleEntity sale;
       //Save Sale
       try {
@@ -69,10 +72,21 @@ public class SaleController {
             .body(new ResponseSaleDto("Purchase successfully created!",sale.getId(),sale.getPublicIdMedicine(), sale.getName(), sale.getQuantity(), sale.getTotalValue()));
   }
 
-  //Filtrar
-  @GetMapping("sale")
-  public ResponseEntity<?> getSales() {
+  //TODO: Crear Filtros
+  @GetMapping("sales/")
+  public ResponseEntity<?> getSales(
+    @RequestParam(value = "filterStartDate", defaultValue = "") Long filterStartDate,
+    @RequestParam(value = "filterEndDate", defaultValue = "") Long filterEndDate
+  ) {
+    if (filterStartDate != null && filterEndDate != null) {
+      //Obtener ventas por fecha
+      List<SaleEntity> sales = this._saleSrv.findBewteenDates(filterStartDate, filterEndDate);
+      System.out.println("SALES FILTERS: "+sales);
+    }
+
+    List<SaleEntity> sales = this._saleSrv.getSales();
     // Obtener las ventas
+    System.out.println(sales);
     return ResponseEntity.status(HttpStatus.OK).body("");
   }
 
