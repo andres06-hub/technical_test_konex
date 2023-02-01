@@ -1,12 +1,17 @@
 package com.konex.medicines.products;
 
 import java.io.Serializable;
+import java.util.List;
 
+import com.konex.medicines.sales.SaleEntity;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.*;
 import lombok.Data;
@@ -39,8 +44,8 @@ public class ProdEntity implements Serializable {
   @Column(name = "date_manufacture", nullable = false)
   @NotNull(message = "Manufacture_date is mandatory!")
   Long dateManufacture;
-  
-  @Column (name = "expiration_date", nullable = false)
+
+  @Column(name = "expiration_date", nullable = false)
   @NotNull(message = "Expiration_date in mandatory")
   Long expirationDate;
 
@@ -48,7 +53,10 @@ public class ProdEntity implements Serializable {
   @NotNull(message = "Stock cannot be Null")
   Integer quantityStock;
 
-  @Column(name ="unit_value", nullable = false)
+  @Column(name = "unit_value", nullable = false)
   @NotNull(message = "value cannot be Null")
   Double unitValue;
+
+  @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
+  private List<SaleEntity> sales;
 }

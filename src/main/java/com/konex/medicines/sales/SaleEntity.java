@@ -2,6 +2,8 @@ package com.konex.medicines.sales;
 
 import java.io.Serializable;
 
+import com.konex.medicines.products.ProdEntity;
+
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
@@ -36,4 +38,8 @@ public class SaleEntity implements Serializable {
     @Column(name = "total_value")
     @NotNull
     Double totalValue;
+
+    @ManyToOne
+    @JoinColumn(name = "product_id")
+    private ProdEntity product;
 }

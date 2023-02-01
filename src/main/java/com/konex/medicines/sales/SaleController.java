@@ -59,12 +59,12 @@ public class SaleController {
       log.info("Updated Medicine: " + result.getData());
     // Round value
     double totalValue = data.getQuantity() * medicine.getUnitValue();
-    // TODO: Cambiar a timeStand
     double finalValue = Math.round(totalValue * 100.0) / 100.0;
     data.setTotalValue(finalValue);
     data.setName(medicine.getName());
     data.setSaleDateTime(data.getSaleDateTime());
     data.setUnitPrice(medicine.getUnitValue());
+    data.setProduct(medicine);
     SaleEntity sale;
     // Save Sale
     try {
