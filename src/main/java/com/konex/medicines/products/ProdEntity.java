@@ -38,11 +38,11 @@ public class ProdEntity implements Serializable {
 
   @Column(name = "date_manufacture", nullable = false)
   @NotNull(message = "Manufacture_date is mandatory!")
-  String dateManufacture;
+  Long dateManufacture;
   
   @Column (name = "expiration_date", nullable = false)
   @NotNull(message = "Expiration_date in mandatory")
-  String expirationDate;
+  Long expirationDate;
 
   @Column(name = "quantity_stock", nullable = false)
   @NotNull(message = "Stock cannot be Null")
