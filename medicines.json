@@ -1,0 +1,272 @@
+[
+  {
+    "publicId": "073c6cdf",
+    "name": "acetaminofen",
+    "factoryLaboratory": "bayer",
+    "dateManufacture": 1675212854140,
+    "expirationDate": 1675212885136,
+    "quantityStock": 1,
+    "unitValue": 26.25
+  },
+  {
+    "publicId": "92d2b75d",
+    "name": "advil",
+    "factoryLaboratory": "genfarm",
+    "dateManufacture": 1675212914873,
+    "expirationDate": 1675212949000,
+    "quantityStock": 2,
+    "unitValue": 6.53
+  },
+  {
+    "publicId": "38816795",
+    "name": "aspirina",
+    "factoryLaboratory": "mk",
+    "dateManufacture": 1675212996504,
+    "expirationDate": 1675212971433,
+    "quantityStock": 3,
+    "unitValue": 51.93
+  },
+  {
+    "publicId": "576614d1",
+    "name": "advil",
+    "factoryLaboratory": "pfizerinc",
+    "dateManufacture": 1675213018945,
+    "expirationDate": 1675213042600,
+    "quantityStock": 4,
+    "unitValue": 86.76
+  },
+  {
+    "publicId": "b6caff7b",
+    "name": "penicilina",
+    "factoryLaboratory": "genfarm",
+    "dateManufacture": 1675213198759,
+    "expirationDate": 1675213162271,
+    "quantityStock": 5,
+    "unitValue": 88.00
+  },
+  {
+    "publicId": "820455ae",
+    "name": "acetaminofen",
+    "factoryLaboratory": "invima",
+    "dateManufacture": 1675213178010,
+    "expirationDate": 1675213139131,
+    "quantityStock": 6,
+    "unitValue": 80.31
+  },
+  {
+    "publicId": "a1bd6a3b",
+    "name": "paracetamol",
+    "factoryLaboratory": "mk",
+    "dateManufacture": 1675213226565,
+    "expirationDate": 1675213298467,
+    "quantityStock": 7,
+    "unitValue": 69.94
+  },
+  {
+    "publicId": "44045ed7",
+    "name": "tramadol",
+    "factoryLaboratory": "invima",
+    "dateManufacture": 1675213247066,
+    "expirationDate": 1675213112866,
+    "quantityStock": 8,
+    "unitValue": 62.52
+  },
+  {
+    "publicId": "b6505e00",
+    "name": "advil",
+    "factoryLaboratory": "bayer",
+    "dateManufacture": 1675213269242,
+    "expirationDate": 1675213088876,
+    "quantityStock": 9,
+    "unitValue": 16.95
+  },
+  {
+    "publicId": "2f67f9dc",
+    "name": "paracetamol",
+    "factoryLaboratory": "bayer",
+    "dateManufacture": 1675213284095,
+    "expirationDate": 167521306834,
+    "quantityStock": 10,
+    "unitValue": 59.90
+  },
+	{
+    "publicId": "56b801e2",
+    "name": "imipramina",
+    "factoryLaboratory": "german",
+    "dateManufacture": 1675249121344,
+    "expirationDate": 1675249121344,
+    "quantityStock": 8,
+    "unitValue": "88.66"
+  },
+  {
+    "publicId": "cd861fb8",
+    "name": "lagrimas",
+    "factoryLaboratory": "german",
+    "dateManufacture": 1675249242691,
+    "expirationDate": 1675249371293,
+    "quantityStock": 3,
+    "unitValue": "15.03"
+  },
+  {
+    "publicId": "7d000674",
+    "name": "imipramina",
+    "factoryLaboratory": "invima",
+    "dateManufacture": 1675249298675,
+    "expirationDate": 1675249371293,
+    "quantityStock": 3,
+    "unitValue": "71.83"
+  },
+  {
+    "publicId": "c1271870",
+    "name": "vacuna",
+    "factoryLaboratory": "pfizer",
+    "dateManufacture": 1675249298675,
+    "expirationDate": 1675249298675,
+    "quantityStock": 5,
+    "unitValue": "54.66"
+  },
+  {
+    "publicId": "3eb46c82",
+    "name": "vacuna",
+    "factoryLaboratory": "Wordify",
+    "dateManufacture": 1675249242691,
+    "expirationDate": 1675249298675,
+    "quantityStock": 45,
+    "unitValue": "38.40"
+  },
+  {
+    "publicId": "697fecc3",
+    "name": "lagrimas",
+    "factoryLaboratory": "Browsebug",
+    "dateManufacture": 1675249121344,
+    "expirationDate": 1675249533002,
+    "quantityStock": 36,
+    "unitValue": "11.16"
+  },
+  {
+    "publicId": "c08f55e9",
+    "name": "minoxidil",
+    "factoryLaboratory": "Dynabox",
+    "dateManufacture": 1675249242691,
+    "expirationDate": 1675249242693,
+    "quantityStock": 27,
+    "unitValue": "75.53"
+  },
+  {
+    "publicId": "0c8a2fc4",
+    "name": "minoxidil",
+    "factoryLaboratory": "Eabox",
+    "dateManufacture": 1675249371293,
+    "expirationDate": 1675249298675,
+    "quantityStock": 8,
+    "unitValue": "32.56"
+  },
+  {
+    "publicId": "10df1e9c",
+    "name": "imipramina",
+    "factoryLaboratory": "Skinte",
+    "dateManufacture": 1675249371293,
+    "expirationDate": 1675249371293,
+    "quantityStock": 9,
+    "unitValue": "5.05"
+  },
+  {
+    "publicId": "d750a6fc",
+    "name": "ibuprofeno",
+    "factoryLaboratory": "german",
+    "dateManufacture": 1675249507949,
+    "expirationDate": 1675249242693,
+    "quantityStock": 50,
+    "unitValue": "69.13"
+  },
+  {
+    "publicId": "c2bcfd0e",
+    "name": "minoxidil",
+    "factoryLaboratory": "unidas",
+    "dateManufacture": 1675249371293,
+    "expirationDate": 1675249121344,
+    "quantityStock": 11,
+    "unitValue": "99.23"
+  },
+  {
+    "publicId": "1e572247",
+    "name": "ibuprofeno",
+    "factoryLaboratory": "unidas",
+    "dateManufacture": 1675249507949,
+    "expirationDate": 1675249242693,
+    "quantityStock": 12,
+    "unitValue": "16.47"
+  },
+  {
+    "publicId": "9f8bff11",
+    "name": "ibuprofeno",
+    "factoryLaboratory": "pfizer",
+    "dateManufacture": 1675249507949,
+    "expirationDate": 1675249188426,
+    "quantityStock": 43,
+    "unitValue": "81.19"
+  },
+  {
+    "publicId": "dcc82b03",
+    "name": "ibuprofeno",
+    "factoryLaboratory": "Buzzbean",
+    "dateManufacture": 1675249483254,
+    "expirationDate": 1675249188426,
+    "quantityStock": 14,
+    "unitValue": "63.43"
+  },
+  {
+    "publicId": "7e9e98cb",
+    "name": "ibuprofeno",
+    "factoryLaboratory": "Ntags",
+    "dateManufacture": 1675249483254,
+    "expirationDate": 1675249121344,
+    "quantityStock": 19,
+    "unitValue": "97.51"
+  },
+  {
+    "publicId": "406ac6a8",
+    "name": "lagrimas",
+    "factoryLaboratory": "pfizer",
+    "dateManufacture": 1675249436842,
+    "expirationDate": 1675249188426,
+    "quantityStock": 16,
+    "unitValue": "75.14"
+  },
+  {
+    "publicId": "376faa43",
+    "name": "analgesico",
+    "factoryLaboratory": "Abata",
+    "dateManufacture": 1675249436842,
+    "expirationDate": 1675249436843,
+    "quantityStock": 32,
+    "unitValue": "26.23"
+  },
+  {
+    "publicId": "7dec0d6a",
+    "name": "vacuna",
+    "factoryLaboratory": "Quaxo",
+    "dateManufacture": 1675249436842,
+    "expirationDate": 1675249188426,
+    "quantityStock": 36,
+    "unitValue": "12.07"
+  },
+  {
+    "publicId": "9aa8079b",
+    "name": "vacuna",
+    "factoryLaboratory": "unidas",
+    "dateManufacture": 1675249188426,
+    "expirationDate": 1675249121344,
+    "quantityStock": 9,
+    "unitValue": "61.26"
+  },
+  {
+    "publicId": "f7c9ae1b",
+    "name": "lagrimas",
+    "factoryLaboratory": "unidas",
+    "dateManufacture": 1675249121344,
+    "expirationDate": 1675249436843,
+    "quantityStock": 2,
+    "unitValue": "54.77"
+  }
+]
