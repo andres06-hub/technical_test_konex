@@ -31,57 +31,64 @@ public class SaleController {
   @Resource
   ProdService _prodSrv;
 
-  @Resource 
+  @Resource
   SaleService _saleSrv;
 
   @PostMapping("sale")
   public ResponseEntity<ResponseSaleDto> createSale(@RequestBody SaleEntity data) {
-      // validate if the product has sufficient quantity
-      ProdEntity medicine = this._prodSrv.findByPublicId(data.publicIdMedicine);
-      if (medicine == null) return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ResponseSaleDto("The drug does not exist"));
-      if (medicine.getQuantityStock() <= 0) return ResponseEntity.status(HttpStatus.OK).body(new ResponseSaleDto("There is no products!"));
-      if (medicine.getQuantityStock() < data.getQuantity()) return ResponseEntity.status(HttpStatus.OK).body(new ResponseSaleDto("Medicine '"+ data.getName() + "', does not have enough products: Current stock: " + medicine.getQuantityStock()));
-      Integer resultStock = medicine.getQuantityStock() - data.getQuantity();
-      //Update product Stock
-      medicine.setQuantityStock(resultStock);
-      ReturnTypeDto result;
-      try {
-        result = this._prodSrv.updateProd(medicine.getId(), medicine);
-      } catch (Exception e) {
-        log.error("ERROR:" + e);
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ResponseSaleDto("ERROR in DB: "+e));
-      }
-      if (result.getStatus()) log.info("Updated Medicine: " + result.getData());
-      // Round value
-      double totalValue = data.getQuantity()*data.getUnitPrice();
-      //TODO: Cambiar a timeStand
-      double finalValue = Math.round( totalValue * 100.0 ) / 100.0;
-      data.setTotalValue(finalValue);
-      data.setSaleDateTime(data.getSaleDateTime());
-      SaleEntity sale;
-      //Save Sale
-      try {
-        sale = this._saleSrv.save(data);
-      } catch (Exception e) {
-        log.error("ERROR: " + e);
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ResponseSaleDto("ERROR in DB: " + e));
-      }
-      log.info("SAVE sale: " + sale);
-      return ResponseEntity
-            .status(HttpStatus.OK)
-            .body(new ResponseSaleDto("Purchase successfully created!",sale.getId(),sale.getPublicIdMedicine(), sale.getName(), sale.getQuantity(), sale.getTotalValue()));
+    // validate if the product has sufficient quantity
+    ProdEntity medicine = this._prodSrv.findByPublicId(data.publicIdMedicine);
+    if (medicine == null)
+      return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ResponseSaleDto("The drug does not exist"));
+    if (medicine.getQuantityStock() <= 0)
+      return ResponseEntity.status(HttpStatus.OK).body(new ResponseSaleDto("There is no products!"));
+    if (medicine.getQuantityStock() < data.getQuantity())
+      return ResponseEntity.status(HttpStatus.OK).body(new ResponseSaleDto("Medicine '" + data.getName()
+          + "', does not have enough products: Current stock: " + medicine.getQuantityStock()));
+    Integer resultStock = medicine.getQuantityStock() - data.getQuantity();
+    // Update product Stock
+    medicine.setQuantityStock(resultStock);
+    ReturnTypeDto result;
+    try {
+      result = this._prodSrv.updateProd(medicine.getId(), medicine);
+    } catch (Exception e) {
+      log.error("ERROR:" + e);
+      return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ResponseSaleDto("ERROR in DB: " + e));
+    }
+    if (result.getStatus())
+      log.info("Updated Medicine: " + result.getData());
+    // Round value
+    double totalValue = data.getQuantity() * medicine.getUnitValue();
+    // TODO: Cambiar a timeStand
+    double finalValue = Math.round(totalValue * 100.0) / 100.0;
+    data.setTotalValue(finalValue);
+    data.setSaleDateTime(data.getSaleDateTime());
+    data.setUnitPrice(medicine.getUnitValue());
+    SaleEntity sale;
+    // Save Sale
+    try {
+      sale = this._saleSrv.save(data);
+    } catch (Exception e) {
+      log.error("ERROR: " + e);
+      return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ResponseSaleDto("ERROR in DB: " + e));
+    }
+    log.info("SAVE sale: " + sale);
+    return ResponseEntity
+        .status(HttpStatus.OK)
+        .body(new ResponseSaleDto("Purchase successfully created!", sale.getId(), sale.getPublicIdMedicine(),
+            sale.getName(), sale.getQuantity(), sale.getTotalValue()));
   }
 
-  //TODO: Crear Filtros
+  // TODO: Crear Filtros
   @GetMapping("sales/")
   public ResponseEntity<?> getSales(
-    @RequestParam(value = "filterStartDate", defaultValue = "0") Long filterStartDate,
-    @RequestParam(value = "filterEndDate", defaultValue = "0") Long filterEndDate
-  ) {
+      @RequestParam(value = "filterStartDate", defaultValue = "0") Long filterStartDate,
+      @RequestParam(value = "filterEndDate", defaultValue = "0") Long filterEndDate) {
     if (filterStartDate != 0 && filterEndDate != 0) {
-      //Obtener ventas por fecha
+      // Obtener ventas por fecha
+      log.info("Filter...");
       List<SaleEntity> sales = this._saleSrv.findBewteenDates(filterStartDate, filterEndDate);
-      System.out.println("SALES FILTERS: "+sales);
+      System.out.println("SALES FILTERS: " + sales);
       return ResponseEntity.status(HttpStatus.OK).body(sales);
     }
 
@@ -90,6 +97,6 @@ public class SaleController {
     return ResponseEntity.status(HttpStatus.OK).body(sales);
   }
 
-  //API para calcular el valor total de una compra
-  
+  // API para calcular el valor total de una compra
+
 }
